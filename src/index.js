@@ -1,13 +1,23 @@
 let tasks = [];
 
-function addTask(priorityNum, taskName) {
-  let newTask = { priorityNumber: priorityNum, nameOfTask: taskName };
+function addTask(taskPriority, taskName) {
+    let newTask = { priorityNumber: taskPriority, nameOfTask: taskName };
 
-  tasks.push(newTask);
-  drawTasksArea(tasks);
+  const taskDisplayArea = document.getElementById('taskArea');
+
+  let divForTask = document.createElement('div');
+  let h1ForTask = document.createElement('h1');
+
+  h1ForTask.textContent = `${newTask.priorityNumber}: ${newTask.nameOfTask}`;
+
+  divForTask.append(h1ForTask);
+  divForTask.className = 'task';
+  divForTask.style.display = 'block';
+  taskDisplayArea.append(divForTask);
 }
 
-function drawTasksArea(listOfTasks) {
+
+function redrawTasksArea(listOfTasks) {
   const taskDisplayArea = document.getElementById('taskArea');
 
   // TODO: fix the weird cloning that happend when you keep adding tasks.

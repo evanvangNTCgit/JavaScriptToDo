@@ -11,9 +11,8 @@ div{
 }
 
 #taskInputArea {
-  float: left;
   background-color: cadetblue;
-  width: 50vw;
+  width: 100%;
 }
 
 #taskInputArea > input {
@@ -25,7 +24,7 @@ div{
 }
 
 #taskArea {
-  width: 50vw;
-  float: right;
+  height: auto;
+  width: 100%;
   background-color: #6A5ACD;
 }
