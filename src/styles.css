@@ -6,6 +6,10 @@ body {
   background-color: wheat;
 }
 
+div{
+    padding: 10px;
+}
+
 #taskInputArea {
   float: left;
   background-color: cadetblue;
@@ -23,5 +27,5 @@ body {
 #taskArea {
   width: 50vw;
   float: right;
-  background-color: red;
+  background-color: #6A5ACD;
 }
