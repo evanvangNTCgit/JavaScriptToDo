@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: wheat;
+}
+
+#taskInputArea {
+  float: left;
+  background-color: cadetblue;
+  width: 50vw;
+}
+
+#taskInputArea > input {
+  display: block;
+  margin-bottom: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#taskArea {
+  width: 50vw;
+  float: right;
+  background-color: red;
+}
