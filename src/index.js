@@ -1,81 +1,63 @@
-/*
-There should only be one task with a specific priority
-Meaning for example only one task with priority 1.
-*/
+let startID = 1;
 
-let tasks = [];
-
-function addTask(taskPriority, taskName) {
-  taskPriority = parseInt(taskPriority);
-
-  if (!verifyPriority(tasks, taskPriority)) {
-    window.alert('Please do not use duplicate priority numbers.');
-    return;
-  }
-
-  let newTask = { priorityNumber: taskPriority, nameOfTask: taskName };
-
-  tasks.push(newTask);
+function addTask(taskName) {
+  let newTask = { nameOfTask: taskName };
 
   const taskDisplayArea = document.getElementById('taskArea');
 
   let divForTask = document.createElement('div');
   let h1ForTask = document.createElement('h1');
   let removeButton = document.createElement('button');
+  let editButton = document.createElement('button');
 
-  //TODO: 
-  // Come up with a way to edit the tasks.
+  h1ForTask.textContent = `${newTask.nameOfTask}`;
+  h1ForTask.id = `h1${startID}`;
 
-  h1ForTask.textContent = `${newTask.priorityNumber}: ${newTask.nameOfTask}`;
-
+  let currentIDIteration = startID;
   removeButton.textContent = 'Remove Task';
   removeButton.onclick = function () {
-    removeTask(newTask.priorityNumber);
+    removeTask(currentIDIteration);
+  };
+
+  editButton.textContent = 'Edit Task';
+  editButton.style.marginLeft = '50px';
+  editButton.onclick = function () {
+    EditTask(currentIDIteration);
   };
 
   divForTask.append(h1ForTask);
   divForTask.append(removeButton);
+  divForTask.append(editButton);
   divForTask.className = 'task';
+  divForTask.id = `${currentIDIteration}`;
   divForTask.style.display = 'block';
   taskDisplayArea.append(divForTask);
 
-  reorderList();
-}
-
-function verifyPriority(taskList, input) {
-  for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].priorityNumber === input) {
-      return false;
-    }
-    return true;
-  }
-  return true;
-}
-
-function reorderList() {
-  for (let i = 0; i < tasks.length; i++) {
-    for (let j = i + 1; j < tasks.length; j++) {
-      if (tasks[i].priorityNumber > tasks[j].priorityNumber) {
-        let temp = tasks[i];
-        tasks[i] = tasks[j];
-        tasks[j] = temp;
-      }
-    }
-  }
+  startID++;
 }
 
 function removeTask(input) {
-  let listOfTasks = document.querySelectorAll('.task');
-
-  for (let i = 0; i < tasks.length; i++) {
-    if (tasks[i].priorityNumber === input) {
-      tasks.splice(i, 1);
-    }
-  }
+  const listOfTasks = document.querySelectorAll('.task');
 
   listOfTasks.forEach((t) => {
-    if (t.textContent.startsWith(input, 0)) {
+    if (parseInt(t.id) === input) {
       t.remove();
     }
   });
+}
+
+function EditTask(task) {
+  let newTaskName = window.prompt('New name for this task?');
+  if(!newTaskName){
+    window.alert('Nothing was input so nothing was edited.');
+    return;
+  }
+
+  const listOfHeaders = document.getElementsByTagName('h1');
+
+  for(let i = 0; i < listOfHeaders.length; i++){
+    if(listOfHeaders[i].id === `h1${task}`){
+      listOfHeaders[i].textContent = newTaskName;
+    }
+  }
 }

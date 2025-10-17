@@ -10,12 +10,10 @@
   <body>
     <h1 style="margin-bottom: 10px">Evan's ToDo List</h1>
     <div id="taskInputArea">
-      <label>Priority Number</label>
-      <input type="number" placeholder="1" id="taskPriority" min="1"/>
       <label>Task Name</label>
       <input type="text" placeholder="Clean the dishes." id="taskText" />
       <button
-        onclick="addTask(document.querySelector('#taskPriority').value, document.querySelector('#taskText').value)"
+        onclick="addTask(document.querySelector('#taskText').value)"
       >
         Add Task
       </button>
